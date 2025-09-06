@@ -26,7 +26,7 @@ Code
 |-----------|--------------------------------------------------|
 | Frontend  | HTML, CSS, Bootstrap 5, FontAwesome, Vanilla JS |
 | Backend   | Node.js (native `http`), MongoDB (in-memory), Mongoose |
-| Testing   | Selenium WebDriver (Python), ChromeDriver       |
+| Testing   | Selenium, postman, fastify, express. js|
 
 ---
 
@@ -37,7 +37,7 @@ http://localhost:3000
 
 Code
 
-### Endpoints
+### Endpoints - (postman) 
 
 | Method | Endpoint         | Description                      |
 |--------|------------------|----------------------------------|
