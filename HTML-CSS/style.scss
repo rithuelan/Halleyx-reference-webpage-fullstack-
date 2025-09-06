@@ -1,0 +1,110 @@
+// Variables
+$primary-color: #124518;
+$secondary-color: #0f3e2e;
+$background-color: #f6f9fc;
+$text-color: #333;
+$font-family: 'Inter', sans-serif;
+$breakpoint-tablet: 768px;
+
+// Mixin for responsive breakpoints
+@mixin tablet {
+  @media (min-width: #{$breakpoint-tablet}) {
+    @content;
+  }
+}
+
+// Global styles
+body {
+  font-family: $font-family;
+  margin: 0;
+  background-color: $background-color;
+  color: $text-color;
+  line-height: 1.6;
+}
+
+// Animation
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in {
+  animation: fadeIn 0.5s ease-in-out forwards;
+}
+
+// Navbar
+.navbar {
+  background-color: $primary-color !important;
+}
+
+// Contact Form
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .form-group-checkbox {
+    flex-direction: row;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  label {
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+  }
+
+  input[type="email"],
+  input[type="password"],
+  select {
+    padding: 0.8rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  input[type="checkbox"] {
+    width: auto;
+  }
+
+  .submit-btn {
+    background-color: $secondary-color;
+    color: white;
+    border: none;
+    padding: 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-size: 1rem;
+
+    &:hover {
+      background-color: darken($secondary-color, 10%);
+    }
+  }
+}
+
+// Media Section
+.media-item {
+  margin-bottom: 1.5rem;
+}
+
+// Footer
+.footer {
+  background-color: $primary-color;
+  color: white;
+  text-align: center;
+  padding: 1.5rem;
+  margin-top: 2rem;
+}
