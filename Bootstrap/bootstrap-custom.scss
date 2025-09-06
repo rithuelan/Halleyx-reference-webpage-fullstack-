@@ -1,0 +1,207 @@
+// Import Bootstrap
+@import "node_modules/bootstrap/scss/bootstrap";
+
+// Your custom overrides
+$primary: #007bff;
+$secondary: #6c757d;
+$body-bg: #f8f9fa;
+
+// Bootstrap core
+@import "bootstrap/functions";
+@import "bootstrap/variables";
+
+// Theme overrides
+$primary: #0a2540;
+$secondary: #6a9fc9;
+$body-bg: #f6f9fc;
+$body-color: #333;
+$font-family-base: 'Inter', sans-serif;
+$border-radius: 0.5rem;
+$input-border-color: #ccc;
+
+// Dark mode support
+$enable-dark-mode: true;
+$color-mode-type: media-query;
+
+// Bootstrap components
+@import "bootstrap/maps";
+@import "bootstrap/mixins";
+@import "bootstrap/root";
+@import "bootstrap/reboot";
+@import "bootstrap/type";
+@import "bootstrap/images";
+@import "bootstrap/containers";
+@import "bootstrap/grid";
+@import "bootstrap/helpers";
+@import "bootstrap/buttons";
+@import "bootstrap/forms";
+@import "bootstrap/nav";
+@import "bootstrap/navbar";
+@import "bootstrap/card";
+@import "bootstrap/utilities";
+
+// Custom styles
+body {
+  background-color: $body-bg;
+  color: $body-color;
+  font-family: $font-family-base;
+  line-height: 1.6;
+  margin: 0;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in {
+  animation: fadeIn 0.5s ease-in-out forwards;
+}
+
+.header {
+  background-color: $primary;
+  color: white;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .logo {
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin: 0;
+  }
+
+  .nav-links {
+    list-style: none;
+    display: flex;
+    gap: 1.5rem;
+    margin: 0;
+    padding: 0;
+
+    a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s;
+
+      &:hover {
+        color: $secondary;
+      }
+    }
+  }
+}
+
+.content-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
+    #about { grid-column: 1 / -1; }
+  }
+
+  section {
+    background: #fff;
+    padding: 2rem;
+    border-radius: $border-radius;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+}
+
+#about {
+  text-align: center;
+
+  .about-logo {
+    margin-bottom: 1rem;
+
+    img {
+      max-width: 100%;
+      height: auto;
+      border-radius: $border-radius;
+    }
+  }
+
+  h2 { font-size: 2rem; margin-bottom: 1rem; }
+  p { font-size: 1rem; color: $body-color; }
+}
+
+#media {
+  h2 { font-size: 2rem; margin-bottom: 1rem; }
+
+  .media-item {
+    margin-bottom: 1.5rem;
+
+    h3 { font-size: 1.2rem; margin-bottom: 0.5rem; }
+
+    video, audio {
+      width: 100%;
+      border-radius: 6px;
+    }
+  }
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .form-group-checkbox {
+    flex-direction: row;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  label {
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+  }
+
+  input[type="email"],
+  input[type="password"],
+  select {
+    padding: 0.8rem;
+    border: 1px solid $input-border-color;
+    border-radius: 4px;
+    width: 100%;
+    box-sizing: border-box;
+    font-size: 1rem;
+  }
+
+  input[type="checkbox"] {
+    width: auto;
+  }
+
+  .submit-btn {
+    background-color: $secondary;
+    color: white;
+    border: none;
+    padding: 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-size: 1rem;
+
+    &:hover {
+      background-color: darken($secondary, 10%);
+    }
+  }
+}
+
+.footer {
+  background-color: $primary;
+  color: white;
+  text-align: center;
+  padding: 1.5rem;
+  margin-top: 2rem;
+  font-size: 0.9rem;
+}
