@@ -47,57 +47,6 @@ Code
 | PUT    | `/tasks/:id`     | Update task by `_id`             |
 | DELETE | `/tasks/:id`     | Delete task by `_id`             |
 
-### Sample POST Body
-```json
-{
-  "title": "Design homepage",
-  "completed": false
-}
-Success Response
-json
-{ "message": "Task created successfully" }
-🎨 Frontend (html-css/index.html + script.js)
-Features
-Responsive layout using Bootstrap grid
-
-Task list rendered dynamically via fetch()
-
-Status badges (Completed / Pending)
-
-Error handling with alert messages
-
-Media section with video and podcast
-
-Contact form with validation
-
-Script Highlights
-js
-document.getElementById("fetchDataBtn").addEventListener("click", () => {
-  const dataList = document.getElementById("dataList");
-  dataList.innerHTML = `<li class="list-group-item text-center">Fetching...</li>`;
-
-  fetch("http://localhost:3000/tasks")
-    .then(res => res.json())
-    .then(data => {
-      dataList.innerHTML = "";
-      const tasks = Array.isArray(data) ? data : data.tasks;
-
-      tasks.forEach(task => {
-        const li = document.createElement("li");
-        li.className = "list-group-item d-flex justify-content-between align-items-center";
-        li.innerHTML = `
-          <span>#${task.taskId} - ${task.title}</span>
-          <span class="badge bg-${task.completed ? 'success' : 'warning'}">
-            ${task.completed ? 'Completed' : 'Pending'}
-          </span>
-        `;
-        dataList.appendChild(li);
-      });
-    })
-    .catch(error => {
-      dataList.innerHTML = `<li class="list-group-item text-danger text-center">${error.message}</li>`;
-    });
-});
 🧪 Selenium UI Testing (tests/selenium/)
 Setup
 bash
