@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Halleyx Company</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet" />
+
+  <!-- FontAwesome CDN -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  />
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body class="bg-light text-dark">
+
+  <!-- 🔷 Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark px-4" style="background-color: #177047;">
+    <a class="navbar-brand" href="#"><i class="fas fa-rocket me-2"></i>Halleyx</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link" href="#about"><i class="fas fa-info-circle me-1"></i>About</a></li>
+        <li class="nav-item"><a class="nav-link" href="#media"><i class="fas fa-photo-video me-1"></i>Media</a></li>
+        <li class="nav-item"><a class="nav-link" href="#contact"><i class="fas fa-envelope me-1"></i>Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!--About Section -->
+  <section id="about" class="container my-5">
+    <div class="card p-4 text-center shadow fade-in">
+      <img src="assets/logo.png" class="mx-auto mb-3 d-block" alt="Halleyx Logo" style="max-width: 150px;" />
+      <h2 class="card-title">About Us</h2>
+      <p class="card-text">
+        Halleyx is a technology-driven company dedicated to delivering innovative digital solutions.
+        We focus on software development, cloud services, and AI-driven products that empower businesses worldwide.
+      </p>
+    </div>
+  </section>
+
+  <!--  Media Section -->
+  <section id="media" class="container my-5">
+    <div class="card p-4 shadow fade-in">
+      <h2 class="card-title mb-4">Company Media</h2>
+      <div class="mb-4">
+        <h5>Company Intro Video</h5>
+        <div class="ratio ratio-16x9 w-75 mx-auto">
+          <video controls class="rounded shadow">
+            <source src="assets/halleyx-intro.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+        </div>
+      </div>
+      <div>
+        <h5>Podcast</h5>
+        <audio controls class="w-75 d-block mx-auto rounded shadow">
+          <source src="assets/halleyx-intro.mp3" type="audio/mp3" />
+          Your browser does not support the audio tag.
+        </audio>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="container my-5">
+    <div class="card p-4 shadow fade-in">
+      <h2 class="card-title mb-4">Contact Us</h2>
+      <form id="contactForm" novalidate>
+        <div class="mb-3">
+          <label for="email" class="form-label">Work Email</label>
+          <input type="email" class="form-control" id="email" placeholder="you@company.com" required />
+          <div class="invalid-feedback">Please enter a valid email address.</div>
+        </div>
+        <div class="mb-3">
+          <label for="password" class="form-label">Create Password</label>
+          <input type="password" class="form-control" id="password" required minlength="6" />
+          <div class="invalid-feedback">Password must be at least 6 characters.</div>
+        </div>
+        <div class="form-check mb-3">
+          <input type="checkbox" class="form-check-input" id="newsletter" />
+          <label class="form-check-label" for="newsletter">Subscribe to Halleyx Newsletter</label>
+        </div>
+        <div class="mb-3">
+          <label for="inquiry-type" class="form-label">Inquiry Type</label>
+          <select class="form-select" id="inquiry-type" required>
+            <option value="">--Select--</option>
+            <option value="general">General</option>
+            <option value="sales">Sales</option>
+            <option value="support">Support</option>
+          </select>
+          <div class="invalid-feedback">Please select an inquiry type.</div>
+        </div>
+        <button type="submit" class="btn btn-success w-100" style="background-color: #169559;">
+          <i class="fas fa-paper-plane me-2"></i>Submit
+        </button>
+      </form>
+    </div>
+  </section>
+
+  <!-- API Data Section -->
+  <section class="container my-5">
+    <div class="card p-4 shadow fade-in">
+      <h2 class="mb-3">Fetch Latest Posts</h2>
+      <button id="fetchDataBtn" class="btn btn-success w-100" style="background-color: #169559;">
+        <i class="fas fa-download me-2"></i>Fetch Data
+      </button>
+      <ul id="dataList" class="list-group"></ul>
+    </div>
+  </section>
+  
+  <!--  Footer -->
+  <footer class="footer" style="background-color: #1c7d27; color: white; padding: 15px 0; text-align: center;">
+    <p>© 2025 Halleyx. All Rights Reserved. <i class="fas fa-heart ms-2"></i></p>
+  </footer>
+
+  <!-- Bootstrap JS Bundle -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Custom JS -->
+  <script src="js/script.js"></script>
+  <script src="js/server.js"></script>
+  
+  <!-- Fetch Logic -->
+  <script>
+    document.getElementById("fetchDataBtn").addEventListener("click", () => {
+      const dataList = document.getElementById("dataList");
+      dataList.innerHTML = `<li class="list-group-item text-center">Fetching...</li>`;
+
+      fetch("http://localhost:3000/tasks")
+        .then(response => {
+          if (!response.ok) {
+            throw new Error("Failed to fetch data!");
+          }
+          return response.json();
+        })
+        .then(data => {
+          dataList.innerHTML = "";
+
+          const tasks = Array.isArray(data) ? data : data.tasks;
+
+          if (!tasks || tasks.length === 0) {
+            dataList.innerHTML = `<li class="list-group-item text-center">No tasks found.</li>`;
+            return;
+          }
+
+          tasks.forEach(task => {
+            const li = document.createElement("li");
+            li.className = "list-group-item d-flex justify-content-between align-items-center";
+            li.innerHTML = `
+              <span>#${task.taskId} - ${task.title}</span>
+              <span class="badge bg-${task.completed ? 'success' : 'warning'}">
+                ${task.completed ? 'Completed' : 'Pending'}
+              </span>
+            `;
+            dataList.appendChild(li);
+          });
+        })
+        .catch(error => {
+          dataList.innerHTML = `<li class="list-group-item text-danger text-center">${error.message}</li>`;
+        });
+    });
+  </script>
+</body>
+</html>
